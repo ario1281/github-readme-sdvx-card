@@ -1,7 +1,12 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+  "name": "github-readme-sdvx-card",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^4.26.0",
+    "serverless-http": "^3.0.0"
   }
 }
