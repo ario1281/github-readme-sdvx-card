@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import serverless from "serverless-http";
-import { ApiHandler } from "./ctrls/api_handler.js";
+import { ApiHandler } from "../ctrls/api_handler.js";
 
 const app = Fastify();
 
@@ -33,3 +33,5 @@ if (process.env.NODE_ENV !== "vercel") {
 
 // ====== Vercel serverless ======
 export default serverless(app);
+
+// end of api/server.js
