@@ -5,16 +5,19 @@ const URI = "https://vaddict.b35.jp/user.php"
 
 export class VaddictInfo {
     constructor() {
+        this.m_data = {};
         this.$ = null;
     }
 
+    get data() { return this.m_data; }
+    
     async init(id) {
+        const url = URI + `?player_id=${id}`;
         try {
-            const url = URI + `?player_id=${id}`;
             const res = await axios.get(url);
             this.$ = cheerio.load(res.data);
         } catch (e) {
-            console.error(e);
+            throw e;
         }
     }
 
@@ -34,7 +37,10 @@ export class VaddictInfo {
                 }
             }
         });
+
         
         return info;
     }
+
+    get
 }
