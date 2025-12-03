@@ -15,7 +15,7 @@ export async function ApiHandler(req) {
   const vaddict = new VaddictInfo();
 
   try {
-    await vaddict.init(`https://vaddict.b35.jp/user.php?player_id=${id}`);
+    await vaddict.init(id);
     const player = vaddict.getPlayerInfo();
 
     // Parse parameters
