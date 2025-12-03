@@ -18,7 +18,7 @@ export async function ApiHandler(req) {
 
     // Parse parameters
     const param = {
-      data: {},
+      data: vaddict.data(),
     };
 
     const content = Svg.render(param); // render image for svg
