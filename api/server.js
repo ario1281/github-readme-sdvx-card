@@ -32,8 +32,14 @@ if (!process.env.VERCEL) {
 }
 
 // ====== Vercel serverless ======
+<<<<<<< HEAD
 export default serverless((req, res) => {
     return fastify.route(req, res);
 });
 
 // end of api/server.js
+=======
+export default serverless(app);
+
+// end of api/server.js
+>>>>>>> main
