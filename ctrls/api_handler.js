@@ -1,5 +1,5 @@
-import { Svg } from "../helpers/svg_helper.js";
-import { VaddictInfo } from "../helpers/convert_html_helper.js";
+import { Svg } from "../lib/svg_helper.js";
+import { VaddictInfo } from "../lib/convert_html.js";
 
 // cache two hours
 const CACHE_MAX_AGE = 7200;
