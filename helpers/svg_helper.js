@@ -1,11 +1,12 @@
 const svgID = "sdvx-card";
 const xmlns = "http://www.w3.org/2000/svg";
+const xlink = "http://www.w3.org/1999/xlink";
 
 export class Svg {
   static render(param) {
     const data = param.data;
     return `
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="200">
+      <svg xmlns="${xmlns}" xmlns:xlink="${xlink}" width="500" height="200">
         <g>
           <!-- main box container -->
           <rect width="500" height="200" fill="#1b2838" rx="8" ry="8" />
