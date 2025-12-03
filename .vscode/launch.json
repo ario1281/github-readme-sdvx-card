@@ -2,22 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Fastify Server (localhost)",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/server.js",
+            "name": "Launch Fastify",
+            "program": "${workspaceFolder}/api/server.js",
             "cwd": "${workspaceFolder}",
-            "env": {
-                "NODE_ENV": "local",       // ローカル用 app.listen() を有効にする
-                "PORT": "3000",            // ポートを指定
-                "HOST": "127.0.0.1"        // localhost に固定
-            },
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "autoAttachChildProcesses": true,
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
+            "env": {
+                "NODE_ENV": "development"
+            }
         }
     ]
 }

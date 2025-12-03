@@ -8,9 +8,9 @@
     "start": "vercel dev"
   },
   "dependencies": {
-    "cheerio": "^1.1.2",
     "fastify": "^4.10.0",
-    "node-fetch": "^3.3.2",
-    "serverless-http": "^4.0.0"
+    "serverless-http": "^4.0.0",
+    "cheerio": "^1.1.x",
+    "axios": "^1.13.x"
   }
 }

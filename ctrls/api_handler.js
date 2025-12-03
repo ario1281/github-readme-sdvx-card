@@ -1,45 +1,39 @@
-import fetch from "node-fetch";
-import { Svg } from "../helpers/svg_helper.js";
-import { PlayerInfoToJson } from "../helpers/html_json_helper.js";
+import { Svg } from "../lib/svg_helper.js";
+import { VaddictInfo } from "../lib/convert_html.js";
 
 // cache two hours
 const CACHE_MAX_AGE = 7200;
 
 export const apiHeaders = new Headers({
-  "Content-Type": "image/svg+xml",
-  "Cache-Control": `public, max-age=${CACHE_MAX_AGE}`,
+    "Content-Type": "image/svg+xml",
+    "Cache-Control": `public, max-age=${CACHE_MAX_AGE}`,
 });
 
 export async function ApiHandler(req) {
-  // Parse query parameters
-  const { id } = req || {};
-  const apiUrl = `https://vaddict.b35.jp/user.php?player_id=${id}`;
+    // 
+    const vaddict = new VaddictInfo();
 
-  try {
-    const res = await fetch(apiUrl);
-    const player = PlayerInfoToJson(await res.text());
+    try {
+        await vaddict.init(req.id);
 
-    // Parse parameters
-    const param = {
-      "id":   id,
-      "name": player[0],
-      "vf":   20.000,
-      "skill": player[3],
-      "played": player[4],
-    };
+        // Parse parameters
+        const param = {
+            data: vaddict.data(),
+        };
 
-    const content = Svg.render({}); // render image for svg
+        const content = Svg.render(param); // render image for svg
 
-    // sucsess
-    return new Response(content, {
-      status: 200,
-      headers: apiHeaders,
-    });
-    
-  } catch (e) {
-    return new Response(e, {
-      status: 400,
-      headers: ApiHeader,
-    });
-  }
+        // sucsess
+        return new Response(content, {
+            status: 200,
+            headers: apiHeaders,
+        });
+
+    } catch (e) {
+        // failed
+        return new Response(`code:${e.code}/n ${e.message}`, {
+            status: e.code,
+            headers: ApiHeader,
+        });
+    }
 }

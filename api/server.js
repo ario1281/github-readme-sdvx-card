@@ -1,28 +1,28 @@
 import Fastify from "fastify";
 import serverless from "serverless-http";
-import { ApiHandler } from "./ctrls/api_handler.js";
+import { ApiHandler } from "../ctrls/api_handler.js";
 
-const app = Fastify();
+const fastify = Fastify();
 
 async function SendFastifyResponse(reply, res) {
     // get text
     const text = await res.text();
 
-    Object.entries(res.headers).forEach(([key, value]) => {
+    Ores.headers.forEach(([key, value]) => {
         reply.header(key, value);
     });
     reply.code(res.status).send(text);
 }
 
-app.get("/api", async (req, reply) => {
+fastify.get("/api", async (req, reply) => {
     // return Response
     const res = await ApiHandler(req.query);
     await SendFastifyResponse(reply, res);
 });
 
 // ====== Local debug ======
-if (process.env.NODE_ENV !== "vercel") {
-    app.listen({ port: 3000 }, (err, address) => {
+if (!process.env.VERCEL) {
+    fastify.listen({ port: 3000 }, (err, address) => {
         if (err) {
             console.error(err);
             process.exit(1);
@@ -32,4 +32,8 @@ if (process.env.NODE_ENV !== "vercel") {
 }
 
 // ====== Vercel serverless ======
-export default serverless(app);
+export default serverless((req, res) => {
+    return fastify.route(req, res);
+});
+
+// end of api/server.js
