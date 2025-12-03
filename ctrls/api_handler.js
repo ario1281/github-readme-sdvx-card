@@ -11,20 +11,14 @@ export const apiHeaders = new Headers({
 
 export async function ApiHandler(req) {
   // Parse query parameters
-  const { id } = req || {};
   const vaddict = new VaddictInfo();
 
   try {
-    await vaddict.init(id);
-    const player = vaddict.getPlayerInfo();
+    await vaddict.init(req.id);
 
     // Parse parameters
     const param = {
-      "id":   id,
-      "name": player["name"],
-      "vf":   20.000,
-      "skill": player["skill"],
-      "played": player["played"],
+      data: {},
     };
 
     const content = Svg.render(param); // render image for svg
@@ -36,8 +30,9 @@ export async function ApiHandler(req) {
     });
     
   } catch (e) {
-    return new Response(e, {
-      status: 400,
+    // failed
+    return new Response(`code:${e.code}/n ${e.message}`, {
+      status: e.code,
       headers: ApiHeader,
     });
   }
