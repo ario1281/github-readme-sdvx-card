@@ -2,10 +2,10 @@
   "version": 2,
   "functions": {
     "api/server.js": {
-
       "runtime": "@vercel/node@24.x"
     }
   },
   "routes": [
     { "src": "/api", "dest": "api/server.js" }
+  ]
 }
