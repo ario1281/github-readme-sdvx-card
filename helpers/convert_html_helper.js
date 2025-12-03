@@ -9,9 +9,13 @@ export class VaddictInfo {
     }
 
     async init(id) {
-        const url = URI + `?player_id=${id}`
-        const res = await axios.get(url);
-        this.$ = cheerio.load(res.data);
+        try {
+            const url = URI + `?player_id=${id}`;
+            const res = await axios.get(url);
+            this.$ = cheerio.load(res.data);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     getPlayerInfo() {
