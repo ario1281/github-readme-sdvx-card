@@ -1,12 +1,15 @@
 import * as axios from "axios";
 import * as cheerio from "cheerio";
 
+const URI = "https://vaddict.b35.jp/user.php"
+
 export class VaddictInfo {
     constructor() {
         this.$ = null;
     }
 
-    async init(url) {
+    async init(id) {
+        const url = URI + `?player_id=${id}`
         const res = await axios.get(url);
         this.$ = cheerio.load(res.data);
     }
