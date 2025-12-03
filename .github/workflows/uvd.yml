@@ -38,8 +38,5 @@ jobs:
           commit-message: 'chore: update dependencies'
           title: 'chore: update dependencies'
           body: 'Automated dependencies update'
-<<<<<<< HEAD
           branch: deps-update
-=======
-          branch: deps-update
->>>>>>> main
+

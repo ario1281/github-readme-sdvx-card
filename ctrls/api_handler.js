@@ -10,7 +10,6 @@ export const apiHeaders = new Headers({
 });
 
 export async function ApiHandler(req) {
-<<<<<<< HEAD
     // 
     const vaddict = new VaddictInfo();
 
@@ -37,32 +36,4 @@ export async function ApiHandler(req) {
             headers: ApiHeader,
         });
     }
-=======
-  // Parse query parameters
-  const vaddict = new VaddictInfo();
-
-  try {
-    await vaddict.init(req.id);
-
-    // Parse parameters
-    const param = {
-      data: vaddict.data(),
-    };
-
-    const content = Svg.render(param); // render image for svg
-
-    // sucsess
-    return new Response(content, {
-      status: 200,
-      headers: apiHeaders,
-    });
-    
-  } catch (e) {
-    // failed
-    return new Response(`code:${e.code}/n ${e.message}`, {
-      status: e.code,
-      headers: ApiHeader,
-    });
-  }
->>>>>>> main
 }

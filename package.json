@@ -10,12 +10,8 @@
   "dependencies": {
     "fastify": "^4.10.0",
     "serverless-http": "^4.0.0",
-<<<<<<< HEAD
     "cheerio": "^1.1.x",
     "axios": "^1.13.x"
-=======
-    "cheerio": "^1.1.2",
-    "axios": "^1.6.7"
->>>>>>> main
+
   }
 }
