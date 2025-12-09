@@ -1,5 +1,4 @@
 import Fastify from "fastify";
-import serverless from "serverless-http";
 import { ApiHandler } from "../ctrls/api_handler.js";
 
 const fastify = Fastify();
@@ -31,8 +30,23 @@ if (!process.env.VERCEL) {
     });
 }
 
-// ====== Vercel serverless ======
-export default serverless(fastify);
+// ====== Serverless ======
+export default async (req, res) => {
+    const { method, url, headers } = req;
+    const payload = req.body;
+    const response = await await fastify.inject({
+        method,
+        url,
+        headers,
+        payload,
+    });
+
+    res.statusCode = response.statusCode;
+    for (const [key, value] of Object.entries(response.headers)) {
+        res.setHeadeer(key, value);
+    }
+    res.end(response.body);
+};
 
 // end of api/server.js
 
