@@ -22,7 +22,7 @@ app.get("/api", async (req, reply) => {
 
 // ====== Local debug ======
 if (!process.env.VERCEL) {
-    fastify.listen({ port: 3000 }, (err, address) => {
+    app.listen({ port: 3000 }, (err, address) => {
         if (err) {
             console.error(err);
             process.exit(1);
