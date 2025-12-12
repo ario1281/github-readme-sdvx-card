@@ -1,7 +1,8 @@
-import Fastify from "fastify";
+import fastify from "fastify";
+import serverless from "serverless-http";
 import { ApiHandler } from "../ctrls/api_handler.js";
 
-const fastify = Fastify();
+const app = fastify();
 
 async function SendFastifyResponse(reply, res) {
     // get text
@@ -13,7 +14,7 @@ async function SendFastifyResponse(reply, res) {
     reply.code(res.status).send(text);
 }
 
-fastify.get("/api", async (req, reply) => {
+app.get("/api", async (req, reply) => {
     // return Response
     const res = await ApiHandler(req.query);
     await SendFastifyResponse(reply, res);
@@ -31,22 +32,7 @@ if (!process.env.VERCEL) {
 }
 
 // ====== Serverless ======
-export default async (req, res) => {
-    const { method, url, headers } = req;
-    const payload = req.body;
-    const response = await await fastify.inject({
-        method,
-        url,
-        headers,
-        payload,
-    });
-
-    res.statusCode = response.statusCode;
-    for (const [key, value] of Object.entries(response.headers)) {
-        res.setHeadeer(key, value);
-    }
-    res.end(response.body);
-};
+export default async serverless(app);
 
 // end of api/server.js
 
