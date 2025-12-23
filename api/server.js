@@ -1,5 +1,3 @@
-import fastify from "fastify";
-import serverless from "serverless-http";
 import { ApiHandler } from "../ctrls/api_handler.js";
 
 const app = fastify();
