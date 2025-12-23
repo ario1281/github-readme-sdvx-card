@@ -31,8 +31,11 @@ if (!process.env.VERCEL) {
     });
 }
 
-// ====== Serverless ======
-export default serverless(app);
+export default {
+  fetch(req) {
+    return new Response('Hello from Vercel!');
+  },
+};
 
 // end of api/server.js
 
