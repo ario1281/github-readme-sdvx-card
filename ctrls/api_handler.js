@@ -14,11 +14,11 @@ export async function ApiHandler(req) {
     const vaddict = new VaddictInfo();
 
     try {
-        await vaddict.init(req.id);
+        //await vaddict.init(req.id);
 
         // Parse parameters
         const param = {
-            data: vaddict.data(),
+            data: "" //vaddict.data(),
         };
 
         const content = Svg.render(param); // render image for svg
