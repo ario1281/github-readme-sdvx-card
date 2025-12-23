@@ -33,7 +33,7 @@ export async function ApiHandler(req) {
         // failed
         return new Response(`code:${e.code}/n ${e.message}`, {
             status: e.code,
-            headers: ApiHeader,
+            headers: apiHeaders,
         });
     }
 }
