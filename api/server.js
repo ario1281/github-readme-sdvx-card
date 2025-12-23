@@ -8,7 +8,7 @@ async function SendFastifyResponse(reply, res) {
     // get text
     const text = await res.text();
 
-    Ores.headers.forEach(([key, value]) => {
+    res.headers.forEach(([key, value]) => {
         reply.header(key, value);
     });
     reply.code(res.status).send(text);
@@ -32,7 +32,7 @@ if (!process.env.VERCEL) {
 }
 
 // ====== Serverless ======
-export default async serverless(app);
+export default serverless(app);
 
 // end of api/server.js
 
