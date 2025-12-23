@@ -1,7 +1,5 @@
 import { ApiHandler } from "../ctrls/api_handler.js";
 
-const app = fastify();
-
 async function SendFastifyResponse(reply, res) {
     // get text
     const text = await res.text();
@@ -12,23 +10,12 @@ async function SendFastifyResponse(reply, res) {
     reply.code(res.status).send(text);
 }
 
-app.get("/api", async (req, reply) => {
-    // return Response
-    const res = await ApiHandler(req.query);
-    await SendFastifyResponse(reply, res);
-});
+
 
 // ====== Local debug ======
-if (!process.env.VERCEL) {
-    app.listen({ port: 3000 }, (err, address) => {
-        if (err) {
-            console.error(err);
-            process.exit(1);
-        }
-        console.log("Local Fastify server running at:", address);
-    });
-}
 
+
+//
 export default {
   fetch(req) {
     return new Response('Hello from Vercel!');
