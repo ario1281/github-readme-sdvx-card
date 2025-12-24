@@ -39,4 +39,3 @@ jobs:
           title: 'chore: update dependencies'
           body: 'Automated dependencies update'
           branch: deps-update
-
